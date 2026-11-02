@@ -21,22 +21,25 @@ benchmark_file = root / "spy_5bps_daily.csv"
 d = pd.read_csv(benchmark_file)
 series["75% SPY / 25% cash"] = (pd.to_datetime(d.session), d.equity.to_numpy(float) / 1000)
 
-colors = {"Adaptive ML settings": "#168a66", "Fixed 24 / 1.4 settings": "#325c9a",
-          "75% SPY / 25% cash": "#87929e"}
+colors = {"Adaptive ML settings": "#111111", "Fixed 24 / 1.4 settings": "#666666",
+          "75% SPY / 25% cash": "#999999"}
+styles = {"Adaptive ML settings": "-", "Fixed 24 / 1.4 settings": "--",
+          "75% SPY / 25% cash": ":"}
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9,
-                     "axes.spines.top": False, "axes.spines.right": False})
-fig, (ax, ddax) = plt.subplots(2, 1, figsize=(8.2, 5.4), sharex=True,
+                     "axes.spines.top": False, "axes.spines.right": False, "axes.labelcolor": "#222222",
+                     "xtick.color": "#222222", "ytick.color": "#222222"})
+fig, (ax, ddax) = plt.subplots(2, 1, figsize=(8.2, 4.35), sharex=True,
                                 gridspec_kw={"height_ratios": [2.2, 1]},
                                 layout="constrained")
 for label, (dates, values) in series.items():
     color = colors[label]
-    ax.plot(dates, values, color=color, lw=1.8, label=label)
+    ax.plot(dates, values, color=color, lw=1.8, ls=styles[label], label=label)
     peak = pd.Series(values).cummax().to_numpy()
-    ddax.plot(dates, (values / peak - 1) * 100, color=color, lw=1.0)
+    ddax.plot(dates, (values / peak - 1) * 100, color=color, lw=1.0, ls=styles[label])
     ax.annotate(f"${values[-1]:.1f}k", (dates.iloc[-1], values[-1]),
                 xytext=(5, 0), textcoords="offset points", color=color,
                 va="center", fontsize=8)
-ax.set_title("30-minute signal portfolio: adaptive vs fixed settings",
+ax.set_title("ML Supertrend: adaptive model vs fixed baseline",
              loc="left", fontsize=12, fontweight="bold")
 ax.set_ylabel("Account equity ($000s)")
 ax.legend(frameon=False, loc="upper left", ncol=3)

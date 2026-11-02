@@ -57,7 +57,7 @@ def main():
  fig,axs=plt.subplots(2,2,figsize=(7,4.4),layout='constrained');ax=axs[0,0];q=np.quantile(fan,[.05,.25,.5,.75,.95],axis=0)*100;ax.fill_between(range(16),q[0],q[4],color='.86',label='5th-95th percentile');ax.fill_between(range(16),q[1],q[3],color='.6',label='25th-75th');ax.plot(q[2],c='black',lw=1);ax.set(title='A  Calibrated Monte Carlo fan',xlabel='Trading sessions',ylabel='Account value (start = 100)');ax.legend(fontsize=6,frameon=False)
  labels=['Gaussian','t(5)','Block bootstrap','Crisis','20% gap'];ax=axs[0,1];y=np.arange(5)
  for k,w in enumerate([.4,.6,.75]):
-  v=result[result.exposure==w].es95_pct;ax.barh(y+(k-1)*.24,v,height=.24,color=['#168a66','#6e9d91','#b7c9c5'][k],label=f'{w:.0%} exposure')
+  v=result[result.exposure==w].es95_pct;ax.barh(y+(k-1)*.24,v,height=.24,color=['#444444','#777777','#aaaaaa'][k],label=f'{w:.0%} exposure')
  ax.set_yticks(y,labels);ax.invert_yaxis();ax.set(title='B  Tail-risk model comparison',xlabel='15-session expected shortfall (%)');ax.legend(fontsize=6,frameon=False)
  ax=axs[1,0];ax.imshow(corr,cmap='Greys',vmin=-1,vmax=1);asset_labels=[f'Asset {chr(65+i)}' for i in range(6)];ax.set_xticks(range(6),asset_labels,rotation=45);ax.set_yticks(range(6),asset_labels);ax.set_title('C  Ledoit-Wolf shrinkage correlation')
  for i in range(6):

@@ -54,7 +54,7 @@ def main():
   for j in range(4):ax.text(j,i,f'{g.values[i,j]:.1f}',ha='center',va='center',color='white' if g.values[i,j]>8 else 'black')
  ax=axs[1,0];d=daily[daily.exposure==.4];x=np.arange(4);ax.barh(x-.16,d.es95_pct,height=.32,color='.65',label='No liquidation');ax.barh(x+.16,d.guard_es95_pct,height=.32,color='.2',label='6% daily-close trigger');ax.set_yticks(x,models);ax.invert_yaxis();ax.set(title='C  Liquidation reduces, but cannot cap, tail loss',xlabel='15-session expected shortfall (%)');ax.legend(fontsize=6,frameon=False)
  ax=axs[1,1];x=np.arange(3);width=.19
- for j,w in enumerate([.2,.4,.6,.75]):ax.bar(x+(j-1.5)*width,[w*k*100 for k in [.1,.2,.3]],width,color=["#b7d8ce","#71aa98","#438675","#1d5f52"][j],label=f'{w:.0%} exposure')
+ for j,w in enumerate([.2,.4,.6,.75]):ax.bar(x+(j-1.5)*width,[w*k*100 for k in [.1,.2,.3]],width,color=["#dddddd","#aaaaaa","#777777","#444444"][j],label=f'{w:.0%} exposure')
  ax.set_xticks(x,['-10%','-20%','-30%']);ax.set(title='D  Correlated equity gap stress',xlabel='Simultaneous stock-book shock',ylabel='Account loss (%)');ax.legend(fontsize=6,frameon=False)
  fig.savefig(out/'declared_risk_dashboard.pdf',bbox_inches='tight');fig.savefig(out/'declared_risk_dashboard.png',dpi=450,bbox_inches='tight');plt.close(fig)
  fig,ax=plt.subplots(figsize=(7,1.5),layout='constrained')
