@@ -1,0 +1,14 @@
+{
+  "symbol": "DELL",
+  "provider": "Yahoo Finance, existing adjusted regular-session 30-minute cache",
+  "input_sha256": "86040f7667014df68bdcbdf76f95f71fe10e2297239d4ef5953c5cfbe837e933",
+  "warmup_start": "2026-07-02T14:00:00+00:00",
+  "warmup_end": "2026-09-25T20:00:00+00:00",
+  "shown_start": "2026-09-18T14:00:00+00:00",
+  "shown_end": "2026-09-25T20:00:00+00:00",
+  "bars_in_full_run": 780,
+  "displayed_bars": 78,
+  "engine": "Python research engine; not a TradingView rendering",
+  "tick_pressure": false,
+  "adaptive_plot_bands": true
+}

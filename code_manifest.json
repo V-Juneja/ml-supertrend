@@ -1,0 +1,6 @@
+{
+  "src/ml_supertrend.py": "b136011e8b5068e6a057891e391447b84932bb4acf70da0c4216bd2cbbef1156",
+  "tradingview/ml_supertrend.pine": "584c35d27fb0b86713ce6424a9e300e8e3099e3d623ee5a48ea4f7ffda9ee382",
+  "tradingview/ml_supertrend_bands_only.pine": "344659798f56a37c53d7b5a186191725dc666c9be259fb158216207ecc094fc4",
+  "tradingview/ml_supertrend_visual.pine": "344659798f56a37c53d7b5a186191725dc666c9be259fb158216207ecc094fc4"
+}

@@ -1,0 +1,136 @@
+{
+  "symbols": [
+    "DELL",
+    "MSFT",
+    "JPM",
+    "UNH",
+    "GE",
+    "XOM"
+  ],
+  "calibration_start": "2026-07-02",
+  "calibration_end": "2026-09-25",
+  "daily_return_observations": 59,
+  "shrinkage_intensity": 0.10996363266885455,
+  "annualized_stock_volatility": {
+    "DELL": 0.7710262254245069,
+    "MSFT": 0.3832700244332383,
+    "JPM": 0.2246746271617945,
+    "UNH": 0.24607164149273503,
+    "GE": 0.31143224030928013,
+    "XOM": 0.2814051034727435
+  },
+  "simulation_paths": 50000,
+  "sessions": 15,
+  "base_seed": 20261102,
+  "source_sha256": {
+    "DELL": "7970d4adf8e6b35c207c2c4507a4f11cc4cb5917b722159b5f3de5ba05c704f1",
+    "MSFT": "ca17f8d25f02ea646065861a66630dde804993f66a1207c9c6940321c90d68ab",
+    "JPM": "db70ad97e12c7500c0c3cb1357fb4ea8a35a58d356814d71519014766669de67",
+    "UNH": "4b07611b75c4d3a91043a844eb702b3de39e64b6ec416d179205ada53d7e3357",
+    "GE": "9892440df40d0270d40633383008f4f124626af75a35579212264be342524367",
+    "XOM": "73b5dc4d45cb951d69f7024cfc5f85cbb7ff15a7e7d1a8042aa6d4a72ce14130"
+  },
+  "results": [
+    {
+      "model": "Calibrated Gaussian",
+      "exposure": 0.4,
+      "var95_pct": 2.8611076736690046,
+      "es95_pct": 3.4995983190672715,
+      "prob_drawdown6_pct": 0.016,
+      "mc_probability_se_pp": 0.005656401683049039,
+      "guard_es95_pct": 3.4994078135758553,
+      "max_drawdown95_pct": 3.4385773217803948
+    },
+    {
+      "model": "Calibrated Gaussian",
+      "exposure": 0.6,
+      "var95_pct": 4.291661510503503,
+      "es95_pct": 5.2493974786009066,
+      "prob_drawdown6_pct": 1.814,
+      "mc_probability_se_pp": 0.059684068896146816,
+      "guard_es95_pct": 5.238074903551983,
+      "max_drawdown95_pct": 5.145978568848408
+    },
+    {
+      "model": "Student-t(5)",
+      "exposure": 0.4,
+      "var95_pct": 2.8605509883834457,
+      "es95_pct": 3.5604928586004894,
+      "prob_drawdown6_pct": 0.052,
+      "mc_probability_se_pp": 0.010195387192255134,
+      "guard_es95_pct": 3.5611701450115536,
+      "max_drawdown95_pct": 3.422710912768337
+    },
+    {
+      "model": "Student-t(5)",
+      "exposure": 0.6,
+      "var95_pct": 4.290826482575158,
+      "es95_pct": 5.340739287900733,
+      "prob_drawdown6_pct": 1.9640000000000002,
+      "mc_probability_se_pp": 0.06205525022107316,
+      "guard_es95_pct": 5.3134742326630136,
+      "max_drawdown95_pct": 5.1186449409910795
+    },
+    {
+      "model": "5-session block bootstrap",
+      "exposure": 0.4,
+      "var95_pct": 2.4541758279777337,
+      "es95_pct": 2.920527061759539,
+      "prob_drawdown6_pct": 0.0,
+      "mc_probability_se_pp": 0.0,
+      "guard_es95_pct": 2.920527061759539,
+      "max_drawdown95_pct": 2.93971436200554
+    },
+    {
+      "model": "5-session block bootstrap",
+      "exposure": 0.6,
+      "var95_pct": 3.6812637419665895,
+      "es95_pct": 4.3807905926393085,
+      "prob_drawdown6_pct": 0.20400000000000001,
+      "mc_probability_se_pp": 0.020178396368393598,
+      "guard_es95_pct": 4.393156220202356,
+      "max_drawdown95_pct": 4.398999328587887
+    },
+    {
+      "model": "Crisis: vol x1.5, rho .90",
+      "exposure": 0.4,
+      "var95_pct": 7.787721817724766,
+      "es95_pct": 9.358538496813718,
+      "prob_drawdown6_pct": 28.970000000000002,
+      "mc_probability_se_pp": 0.20286641417445123,
+      "guard_es95_pct": 7.125846969472828,
+      "max_drawdown95_pct": 9.303543549485786
+    },
+    {
+      "model": "Crisis: vol x1.5, rho .90",
+      "exposure": 0.6,
+      "var95_pct": 11.681582726587148,
+      "es95_pct": 14.037807745220576,
+      "prob_drawdown6_pct": 58.85399999999999,
+      "mc_probability_se_pp": 0.220073018973249,
+      "guard_es95_pct": 8.290560643460356,
+      "max_drawdown95_pct": 13.831267260271005
+    },
+    {
+      "model": "20% common opening gap",
+      "exposure": 0.4,
+      "var95_pct": 10.298982612438127,
+      "es95_pct": 10.811434062171166,
+      "prob_drawdown6_pct": 100.0,
+      "mc_probability_se_pp": 0.0,
+      "guard_es95_pct": 8.768348325856222,
+      "max_drawdown95_pct": 10.517960905473474
+    },
+    {
+      "model": "20% common opening gap",
+      "exposure": 0.6,
+      "var95_pct": 15.448473918657179,
+      "es95_pct": 16.21715109325675,
+      "prob_drawdown6_pct": 100.0,
+      "mc_probability_se_pp": 0.0,
+      "guard_es95_pct": 13.15252248878433,
+      "max_drawdown95_pct": 15.77694135821021
+    }
+  ],
+  "scope": "Illustrative cross-sector risk basket, not an actual position list or a strategy replay. Zero price drift is imposed only in Gaussian models. Bootstrap and t stress do not estimate expected price returns; parameter uncertainty and real execution are not captured."
+}

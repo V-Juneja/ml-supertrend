@@ -1,0 +1,28 @@
+{
+  "adaptive_multiplier": {
+    "min": 1.4,
+    "median": 2.0338087269570373,
+    "max": 2.1449685203921747,
+    "last": 1.9541169203622886
+  },
+  "adaptive_atr_period": {
+    "min": 24.0,
+    "median": 24.0,
+    "max": 24.0,
+    "last": 24.0
+  },
+  "buy_signal": {
+    "adaptive": 6,
+    "fixed": 7,
+    "shared_timestamps": 3
+  },
+  "sell_signal": {
+    "adaptive": 8,
+    "fixed": 10,
+    "shared_timestamps": 2
+  },
+  "completed_probes": {
+    "long": 776,
+    "short": 776
+  }
+}

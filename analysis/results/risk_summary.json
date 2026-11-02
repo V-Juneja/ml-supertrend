@@ -1,0 +1,129 @@
+{
+  "seed": 20261101,
+  "terminal_draws_per_case": 100000,
+  "terminal_cases": 72,
+  "daily_paths_per_model": 40000,
+  "daily_cases": 8,
+  "daily_seeds": [
+    20261201,
+    20261202,
+    20261203,
+    20261204
+  ],
+  "days": 15,
+  "baseline": [
+    {
+      "days": 15,
+      "exposure": 0.2,
+      "sigma": 0.45,
+      "rho": 0.65,
+      "var95_pct": 2.9107203306175538,
+      "es95_pct": 3.5441991364268337,
+      "prob_loss10_pct": 0.0,
+      "median_return_pct": -0.07610217271639909
+    },
+    {
+      "days": 15,
+      "exposure": 0.4,
+      "sigma": 0.45,
+      "rho": 0.65,
+      "var95_pct": 5.8214406612351075,
+      "es95_pct": 7.088398272853667,
+      "prob_loss10_pct": 0.123,
+      "median_return_pct": -0.15220434543279818
+    },
+    {
+      "days": 15,
+      "exposure": 0.6,
+      "sigma": 0.45,
+      "rho": 0.65,
+      "var95_pct": 8.73216099185266,
+      "es95_pct": 10.6325974092805,
+      "prob_loss10_pct": 2.71,
+      "median_return_pct": -0.22830651814919725
+    }
+  ],
+  "daily": [
+    {
+      "model": "Gaussian",
+      "exposure": 0.4,
+      "prob_drawdown6_pct": 9.9325,
+      "guard_es95_pct": 6.459213320971838,
+      "var95_pct": 5.78691121795652,
+      "es95_pct": 7.075382635309792,
+      "prob_loss10_pct": 0.125,
+      "median_return_pct": -0.18819435068911372
+    },
+    {
+      "model": "Gaussian",
+      "exposure": 0.6,
+      "prob_drawdown6_pct": 34.0675,
+      "guard_es95_pct": 7.402182628328083,
+      "var95_pct": 8.680366826934769,
+      "es95_pct": 10.613073952964688,
+      "prob_loss10_pct": 2.7275,
+      "median_return_pct": -0.28229152603367336
+    },
+    {
+      "model": "Student-t(5)",
+      "exposure": 0.4,
+      "prob_drawdown6_pct": 9.095,
+      "guard_es95_pct": 6.590378580529606,
+      "var95_pct": 5.721159182344382,
+      "es95_pct": 7.13728040268637,
+      "prob_loss10_pct": 0.1825,
+      "median_return_pct": -0.16475878735733307
+    },
+    {
+      "model": "Student-t(5)",
+      "exposure": 0.6,
+      "prob_drawdown6_pct": 30.595,
+      "guard_es95_pct": 7.933964144813221,
+      "var95_pct": 8.581738773516584,
+      "es95_pct": 10.705920604029554,
+      "prob_loss10_pct": 2.6875,
+      "median_return_pct": -0.24713818103600516
+    },
+    {
+      "model": "10% common gap",
+      "exposure": 0.4,
+      "prob_drawdown6_pct": 46.615,
+      "guard_es95_pct": 7.313523120440295,
+      "var95_pct": 9.25353960153145,
+      "es95_pct": 10.427562200048826,
+      "prob_loss10_pct": 2.8375,
+      "median_return_pct": -4.161898340401343
+    },
+    {
+      "model": "10% common gap",
+      "exposure": 0.6,
+      "prob_drawdown6_pct": 86.925,
+      "guard_es95_pct": 8.752452101075194,
+      "var95_pct": 13.880309402297165,
+      "es95_pct": 15.641343300073235,
+      "prob_loss10_pct": 21.665,
+      "median_return_pct": -6.242847510602018
+    },
+    {
+      "model": "20% common gap",
+      "exposure": 0.4,
+      "prob_drawdown6_pct": 99.9225,
+      "guard_es95_pct": 9.543823589185084,
+      "var95_pct": 12.61666294332405,
+      "es95_pct": 13.658657151141188,
+      "prob_loss10_pct": 25.919999999999998,
+      "median_return_pct": -8.156107592988121
+    },
+    {
+      "model": "20% common gap",
+      "exposure": 0.6,
+      "prob_drawdown6_pct": 100.0,
+      "guard_es95_pct": 14.315735383777625,
+      "var95_pct": 18.924994414986067,
+      "es95_pct": 20.487985726711784,
+      "prob_loss10_pct": 68.8,
+      "median_return_pct": -12.234161389482173
+    }
+  ],
+  "assumptions": "Six equal stock holdings, frozen shares, fixed uninvested balance, no interest, no fresh signals, no costs; Gaussian expected stock drift zero. Shared t5 scale gives standardized heavy-tailed log innovations, without a finite expected price drift. Guard liquidates at daily close after 6% drawdown. These scenarios are not strategy backtests."
+}
