@@ -48,6 +48,7 @@ This is an adaptive system built from explicit update rules and contextual memor
 | `docs/VALIDATION.md` | Evidence scope and remaining checks |
 | `docs/BACKTEST.md` | Archived BUY-list replay, costs, timing and reproduction |
 | `analysis/replay_archived_signals.py` | Offline saved-ranking portfolio replay |
+| `analysis/plot_archived_replay.py` | Rebuild the archived replay equity, drawdown and monthly-return charts |
 | `analysis/results/archived_replay/` | Dated rankings, simulated outputs and sensitivity tests |
 | `docs/EXECUTION.md` | Bar timing, state, fills and risk overlay |
 | `docs/ATTRIBUTION.md` | Code origin and external references |
@@ -103,7 +104,7 @@ Fifty thousand 15-session paths per model, calibrated to 59 joint daily returns 
 | 20 bps per side | +39.11% | -22.81% |
 | 10 bps + one extra session for ranking eligibility | +43.49% | -21.91% |
 
-![Archived replay equity and drawdown](docs/images/actual_equity_drawdown.png)
-![Monthly net returns](docs/images/actual_monthly_returns.png)
+![Archived replay equity and drawdown](docs/images/archived_replay_equity.png)
+![Monthly net returns](docs/images/archived_replay_monthly.png)
 
 This is the earlier top-ten ranked-BUY workflow, with its own allocation and exits; it is separate from the declared 30-minute ML Supertrend portfolio. Archived rankings are replayed on real market bars. The last list carries forward after 14 October. All 1,254 baseline simulated fills reproduce the saved ledger. See the method page for the complete rules and scope.

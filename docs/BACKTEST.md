@@ -2,7 +2,7 @@
 
 [Results and data](../analysis/results/archived_replay/) · [Replay source](../analysis/replay_archived_signals.py) · [Sensitivity table](../analysis/results/archived_replay/sensitivity.csv)
 
-This test evaluates the earlier archived top-ten BUY workflow, **separately from the declared 30-minute ML Supertrend portfolio**. It consumes rankings recorded in emailed signals. It does not reconstruct past model predictions or demonstrate that adaptive Supertrend beats fixed Supertrend.
+This test evaluates the earlier archived top-ten BUY workflow, **separately from the declared 30-minute ML Supertrend portfolio**. It consumes rankings recorded in emailed signals. It does not reconstruct the declared 30-minute model’s historical predictions or measure that model’s performance.
 
 ## Data and timing
 
