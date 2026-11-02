@@ -10,11 +10,11 @@ import numpy as np
 import pandas as pd
 
 
-def replay(signals, bars, fee_bps=5., slippage_bps=5., extra_delay=0):
+def replay(signals, bars, fee_bps=5., slippage_bps=5., extra_delay=0, position_notional=10000.):
     required={'Date','Rank','Symbol','Score','Signal'}
     if not required.issubset(signals):raise ValueError('Signal columns: '+', '.join(sorted(required)))
     if not {'date','symbol','open','close'}.issubset(bars):raise ValueError('Bar columns: date,symbol,open,close')
-    if extra_delay<0 or fee_bps<0 or slippage_bps<0:raise ValueError('Nonnegative costs/delay required')
+    if extra_delay<0 or fee_bps<0 or slippage_bps<0 or position_notional<=0:raise ValueError('Nonnegative costs/delay and positive position notional required')
     signals=signals.copy();bars=bars.copy()
     signals['Date']=pd.to_datetime(signals.Date).dt.normalize();bars['date']=pd.to_datetime(bars.date).dt.normalize()
     if signals.duplicated(['Date','Rank']).any() or bars.duplicated(['date','symbol']).any():raise ValueError('Duplicate input keys')
@@ -46,8 +46,8 @@ def replay(signals, bars, fee_bps=5., slippage_bps=5., extra_delay=0):
                 fills.append(dict(date=day,symbol=symbol,action='SELL',shares=h['shares'],market_price=market,price=price,notional=notional,fee=charge,slippage_cost=h['shares']*(market-price),amount=proceeds,profit=profit,profit_pct=100*profit/h['basis'],cash_after=cash))
                 del hold[symbol]
         for symbol,(score,rank) in current.items():
-            if symbol in hold or cash<10000-1e-7:continue
-            amount=min(10000.,cash);market=float(p.at[(day,symbol),'open']);price=market*(1+slip);shares=amount/(price*(1+fee));notional=shares*price;charge=notional*fee;debit=notional+charge;cash-=debit
+            if symbol in hold or cash<position_notional-1e-7:continue
+            amount=min(position_notional,cash);market=float(p.at[(day,symbol),'open']);price=market*(1+slip);shares=amount/(price*(1+fee));notional=shares*price;charge=notional*fee;debit=notional+charge;cash-=debit
             hold[symbol]=dict(shares=shares,entry=price,basis=debit)
             fills.append(dict(date=day,symbol=symbol,action='BUY',shares=shares,market_price=market,price=price,notional=notional,fee=charge,slippage_cost=shares*(price-market),amount=debit,score=score,rank=rank,cash_after=cash))
         holdings=sum(h['shares']*float(p.at[(day,s),'close']) for s,h in hold.items());value=cash+holdings

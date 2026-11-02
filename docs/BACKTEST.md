@@ -32,6 +32,27 @@ All settings were held fixed across these tests; these are sensitivity cases, no
 
 Higher costs reduce total return by 12.43 percentage points; a one-session ranking delay reduces it by 8.05 points. The recorded result changes materially with execution assumptions.
 
+## Position-size sensitivity
+
+We replayed the same dated BUY rankings and provider bars with fixed new-position tickets of $5,000, $10,000 and $15,000, equal to 5%, 10% and 15% of the $100,000 starting account. Each case uses the same next-session open, exits, 10 bps per-side friction and ten-name limit. The 10% case reproduces the published baseline.
+
+| Fixed ticket per new name | Average gross exposure | Total return | Maximum drawdown | Daily Sharpe (zero rf) | Closed trades |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| $5,000 (5%) | 44.68% | +26.21% | -13.26% | 1.13 | 625 |
+| $10,000 (10%) | 80.30% | +51.54% | -21.10% | 1.22 | 622 |
+| $15,000 (15%) | 92.88% | +32.90% | -31.78% | 0.77 | 397 |
+
+Ten percent had the highest return and Sharpe among these three fixed-ticket cases; 5% had the shallowest drawdown, and 15% the deepest. This supports the 10% cap as a balance across the tested cases, rather than claiming it is globally optimal. The comparison holds ranking lists, data, timing, exits and costs constant; available cash limits purchases, and no borrowing is used.
+
+Results: [sizing sensitivity CSV](../analysis/results/archived_replay/position_sizing_sensitivity.csv) · [input and method hashes](../analysis/results/archived_replay/position_sizing_sensitivity.json) · [replay code](../analysis/position_sizing_sensitivity.py). Reproduce with the same normalized Alpaca daily bars used for the archived replay:
+
+```sh
+python analysis/position_sizing_sensitivity.py \
+  analysis/results/archived_replay/dated_buy_rankings.csv \
+  /path/to/normalized_alpaca_daily_bars.csv \
+  --output outputs/position_sizing_sensitivity.csv
+```
+
 The standalone replay reproduced all **1,254 baseline fills** (632 BUY, 622 SELL) and all **290 daily equity marks** against the previously saved simulation. Dates, symbols, actions, shares, execution prices, fees, cash debits/credits and cash balances match within floating-point tolerance. This confirms that the published fill ledger and daily equity series reproduce from the saved rankings and execution rules.
 
 ## Execution-sensitivity chart

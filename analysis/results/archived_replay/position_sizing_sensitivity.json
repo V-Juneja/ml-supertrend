@@ -1,0 +1,12 @@
+{
+  "signals_sha256": "4ef9105d08201757c9ae5a2059066aab118bb1ab0aa97887365c08c52bd2b92f",
+  "bars_sha256": "4880a7f07bd15f485d9f123f1562715ba92bad02f62ab4d82f0df6ef1f4bf320",
+  "start": "2025-09-08",
+  "end": "2026-10-30",
+  "sessions": 290,
+  "fee_bps_per_side": 5,
+  "slippage_bps_per_side": 5,
+  "position_tickets": "fixed at 5%, 10%, and 15% of $100,000 starting equity",
+  "max_names": 10,
+  "scope": "Saved daily BUY rankings; identical exit rules and next-session open fills across size cases."
+}
