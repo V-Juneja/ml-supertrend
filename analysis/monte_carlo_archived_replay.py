@@ -7,6 +7,7 @@ import json
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.collections import LineCollection
 import numpy as np
 import pandas as pd
 
@@ -33,6 +34,8 @@ def main():
     rng = np.random.default_rng(a.seed)
     terminal = np.empty(a.paths)
     max_drawdown = np.empty(a.paths)
+    path_equity = np.empty((a.paths, a.horizon + 1), dtype=np.float32)
+    path_equity[:, 0] = 1.0
     blocks_per_path = (a.horizon + a.block - 1) // a.block
     batch_size = 1_000
     for first in range(0, a.paths, batch_size):
@@ -41,6 +44,7 @@ def main():
         indices = (starts[:, :, None] + np.arange(a.block)) % len(returns)
         sampled = returns[indices.reshape(n, -1)[:, :a.horizon]]
         wealth = np.cumprod(1.0 + sampled, axis=1)
+        path_equity[first:first+n, 1:] = wealth
         peak = np.maximum.accumulate(np.column_stack((np.ones(n), wealth)), axis=1)[:, 1:]
         max_drawdown[first:first+n] = (wealth / peak - 1.0).min(axis=1)
         terminal[first:first+n] = wealth[:, -1] - 1.0
@@ -72,17 +76,27 @@ def main():
         "axes.edgecolor": ".25", "text.color": ".1",
         "axes.labelcolor": ".15", "xtick.color": ".2", "ytick.color": ".2",
     })
-    fig, axes = plt.subplots(1, 2, figsize=(8.2, 1.75), layout="constrained")
-    axes[0].hist(terminal * 100, bins=54, color=".67", edgecolor="white", linewidth=.25)
-    axes[0].axvline(p05 * 100, color="#bd4545", lw=1.15, label=f"5th percentile {p05*100:.1f}%")
-    axes[0].axvline(median * 100, color="#24824c", lw=1.15, ls="--", label=f"Median {median*100:.1f}%")
-    axes[0].set(title="One-year terminal return", xlabel="Return (%)", ylabel="Paths")
-    axes[0].legend(frameon=False, fontsize=6.2)
-    dd95 = -np.quantile(max_drawdown, .05) * 100
-    axes[1].hist(-max_drawdown * 100, bins=45, color=".67", edgecolor="white", linewidth=.25)
-    axes[1].axvline(dd95, color="#bd4545", lw=1.15, label=f"95th percentile loss {dd95:.1f}%")
-    axes[1].set(title="Maximum drawdown within path", xlabel="Peak-to-trough loss (%)", ylabel="Paths")
-    axes[1].legend(frameon=False, fontsize=6.2)
+    fig, ax = plt.subplots(figsize=(8.2, 1.75), layout="constrained")
+    x = np.arange(a.horizon + 1)
+    segments = np.empty((a.paths, a.horizon + 1, 2), dtype=np.float32)
+    segments[:, :, 0] = x
+    segments[:, :, 1] = (path_equity - 1.0) * 100.0
+    colors = np.where(terminal >= 0, "#24824c", "#bd4545")
+    collection = LineCollection(segments, colors=colors, linewidths=.22, alpha=.018,
+                                rasterized=True)
+    ax.add_collection(collection)
+    ax.axhline(0, color=".2", lw=.65, ls=":")
+    ax.set_xlim(0, a.horizon)
+    low = float(np.quantile(segments[:, :, 1], .005))
+    high = float(np.quantile(segments[:, :, 1], .995))
+    ax.set_ylim(min(-20, low), max(40, high))
+    ax.set(title=f"All {a.paths:,} circular-block bootstrap paths",
+           xlabel="Simulated trading session", ylabel="Return from $100,000 (%)")
+    from matplotlib.lines import Line2D
+    ax.legend(handles=[Line2D([0],[0],color="#24824c",lw=1,label="Ends above start"),
+                       Line2D([0],[0],color="#bd4545",lw=1,label="Ends below start")],
+              frameon=False, fontsize=6.2, loc="upper left", ncol=2)
+    ax.grid(axis="y",color=".9",lw=.45)
     a.chart.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(a.chart, dpi=300, bbox_inches="tight")
     plt.close(fig)

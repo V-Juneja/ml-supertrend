@@ -34,27 +34,14 @@ Higher costs reduce total return by 12.43 percentage points; a one-session ranki
 
 The standalone replay reproduced all **1,254 baseline fills** (632 BUY, 622 SELL) and all **290 daily equity marks** against the previously saved simulation. Dates, symbols, actions, shares, execution prices, fees, cash debits/credits and cash balances match within floating-point tolerance. This confirms that the published fill ledger and daily equity series reproduce from the saved rankings and execution rules.
 
-## Replay return and covariance chart
+## Daily replay-return chart
 
-The declaration's daily-return histogram uses the 290 baseline equity marks, including the first session relative to initial capital. Its Ledoit–Wolf correlation panel uses split-adjusted daily closes for the eight most frequently entered names, ordered by entry count (ID 1 is most frequent). These are the actual replay stocks, not randomly drawn names; ticker labels are suppressed in the figure. The 289 close-to-close return vectors are aligned by date.
-
-Ledoit–Wolf shrinks the sample covariance matrix toward a stable reference:
-
-$$\widehat{\Sigma}_{LW}=(1-\lambda)S+\lambda\mu I$$
-
-`S` is the sample covariance of daily returns; `I` is the identity matrix; `mu` is the average asset variance; and `lambda` is the shrinkage fraction estimated by `sklearn.covariance.LedoitWolf`, between zero and one. The reference `mu I` assumes equal variance and zero pairwise covariance. Shrinkage reduces noisy estimates of co-movement. The plotted correlation is:
-
-$$\rho_{ij}=\frac{\widehat{\Sigma}_{LW,ij}}{\sqrt{\widehat{\Sigma}_{LW,ii}\widehat{\Sigma}_{LW,jj}}}$$
-
-`rho_ij` is the correlation between assets `i` and `j`; the denominator rescales covariance by both assets' estimated volatility. Correlation ranges from -1 (they move in opposite directions) through 0 (little linear co-movement) to +1 (they move together). Here, off-diagonal estimates range from +0.48 to +0.87, showing substantial shared movement among the most frequently selected stocks and limited diversification from holding several. This is a retrospective risk diagnostic, not a trading input. Red histogram bars are negative portfolio-return sessions; red heatmap cells would indicate negative pairwise correlations.
-
-The underlying Alpaca SIP bars are not redistributed. The plot command checks their SHA-256 against `provenance.json` before using them:
+The histogram uses all 290 baseline equity marks. A session return is the change in marked equity divided by the prior mark; the first session is measured against initial capital. The replay had 170 positive sessions and 120 negative sessions. Median daily return was +0.315%; the worst session was -7.923%. The negative tail shows that positive cumulative return did not mean a smooth path. The chart uses 14 equal-width bins from -8% to +6%; red bars are losses and green bars are gains. Recreate it with:
 
 ```sh
 python analysis/plot_archived_replay.py \
   --results analysis/results/archived_replay \
-  --output docs/images \
-  --bars /path/to/stock_daily_bars.csv.gz
+  --output docs/images
 ```
 
 ## Reproduce
