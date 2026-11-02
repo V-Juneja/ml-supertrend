@@ -34,6 +34,19 @@ Higher costs reduce total return by 12.43 percentage points; a one-session ranki
 
 The standalone replay reproduced all **1,254 baseline fills** (632 BUY, 622 SELL) and all **290 daily equity marks** against the previously saved simulation. Dates, symbols, actions, shares, execution prices, fees, cash debits/credits and cash balances match within floating-point tolerance. This confirms that the published fill ledger and daily equity series reproduce from the saved rankings and execution rules.
 
+## Replay return and covariance chart
+
+The declaration's daily-return histogram uses the 290 baseline equity marks, including the first session relative to initial capital. Its Ledoit–Wolf correlation panel uses split-adjusted daily closes for the eight most frequently entered names, ordered by entry count, over the same 290-session replay calendar. The 289 close-to-close return vectors are aligned by date. `sklearn.covariance.LedoitWolf` estimates the covariance matrix; dividing each element by the product of its assets' estimated standard deviations produces the plotted correlation matrix. This is a descriptive concentration diagnostic; it does not change signals, sizing, or the long-only rules. Red histogram bars are negative portfolio-return sessions; red heatmap cells are negative pairwise correlations.
+
+The underlying Alpaca SIP bars are not redistributed. The plot command checks their SHA-256 against `provenance.json` before using them:
+
+```sh
+python analysis/plot_archived_replay.py \
+  --results analysis/results/archived_replay \
+  --output docs/images \
+  --bars /path/to/stock_daily_bars.csv.gz
+```
+
 ## Reproduce
 
 ```sh

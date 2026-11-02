@@ -1,6 +1,6 @@
 {
   ".gitignore": "a9ce7b15dd808c8c7cfb9b932a2071d0a49e522cd941f2eaa09f8b1a1046720d",
-  "README.md": "fdb3eb4a00a9ecdf9abde2681194ece5738be7b5ea5e7d9cfc5910289c45c81f",
+  "README.md": "820d4bffd50c86a9c663ad62492692acfc41003a85ae78d2fbadfcce7a2bf336",
   "analysis/audit_published_results.py": "b2c85d0ce1c0ba00f4fc572e158f50495c3921e0cd15a288fa236aa039a755f0",
   "analysis/calibrated_risk.py": "1abe1884ac742cae18c55a11f5e03cd365f4c6f53ec7d0077d4e96b4d122e584",
   "analysis/check_model.py": "c062a6c6bb657207c5cfd880dc104d94ea0335783a013623c2498b89d4b4f3c0",
@@ -63,7 +63,7 @@
   "code_manifest.json": "5ba1f54d2fe115c324099bb35032d67fe038f77404cf3f06f9f10402dfbc3460",
   "config/declaration.json": "40d73048090ea84df767a70f197ec11a74e6ddf188059444043fd8930e36b936",
   "docs/ATTRIBUTION.md": "9bf8f94cf9fa927c98e330f56144e57337be5625a077f32cf8b9404b74729eb9",
-  "docs/BACKTEST.md": "e612a0d3dff1ce06151e460d94d581d581ed604cbc03182776f50f8461335453",
+  "docs/BACKTEST.md": "fd058180bce694ca3d2151866c1ffc77d21830114eac966992f21b3a833ea706",
   "docs/DIRECT_MODEL_BACKTEST.md": "e1cf19d40e71ad6b39b3b25d82166f29255b8a80f8ce21a54019ea9d6e9a3ca7",
   "docs/EXECUTION.md": "fe706b3549a5bdd912b79311d5327ee551af768f5a7fcef8a4d1100f803a17c5",
   "docs/IQIC_RUBRIC_REVIEW.md": "4ee0550c709ac44c7029c487772765ed7b6b9d4ca92c7384cd874591737f59f9",
@@ -82,8 +82,8 @@
   "docs/images/dell_paper_trading.png": "19a6c780b18e32e32a452371bf2e5619eac4657d658073907078f6f1b4520c49",
   "examples/WORKED_EXAMPLES.md": "fe3bd5e9b7cc8b0ddaded125cfd92e8774a6d1e1bb69dba2cefe453874f92d06",
   "examples/plot_market.py": "7f8886886c5cd2071cdd635751f4119cf9efdfee64d345278c5a42430fe36aca",
-  "reports/Strategy_Declaration.pdf": "1758b23d0f208c4c1992a9941fb629fb35fee0ad497820ebb633ac8845495a4d",
-  "requirements-plot.txt": "4cb0b0f9d613ccbe033eac4bbd8d4e004e2f73834155b307b11333607003237b",
+  "reports/Strategy_Declaration.pdf": "0f0dd165f82a4ce2b8cef72119c174edc4de82978fcb974d2e4ea82d48e9005b",
+  "requirements-plot.txt": "d89f597fdbb4aafa66fe11e95cb84040f830f6e26f134b14539243dadccdf1fa",
   "requirements-risk.txt": "c6a700109af1396dcd45a243c47b5b9eb13c30d1c13ef3aed7a8ac2ca8ea62a7",
   "requirements.txt": "499d1a55dfb3356978b85da5232d64aa3ab0ace5f5d71b017a11f7112e108e35",
   "run_signals.py": "0b9587d3843aa515bad747c1c1ef9b2e64e59b3d78e7a944b4bd76fd59fbc5a5",
@@ -92,7 +92,7 @@
   "tradingview/ml_supertrend.pine": "584c35d27fb0b86713ce6424a9e300e8e3099e3d623ee5a48ea4f7ffda9ee382",
   "tradingview/ml_supertrend_bands_only.pine": "344659798f56a37c53d7b5a186191725dc666c9be259fb158216207ecc094fc4",
   "tradingview/ml_supertrend_visual.pine": "344659798f56a37c53d7b5a186191725dc666c9be259fb158216207ecc094fc4",
-  "analysis/plot_archived_replay.py": "9373ecfd46f4b00d7a20c393662f337ce7f7790e3e060f58f50d232cd767d45c",
+  "analysis/plot_archived_replay.py": "1f00b1516c7b79d5f543b7228eeb46855ac7f8703b2ebe200e116fb180700f97",
   "docs/images/archived_replay_equity.png": "b5195fd7657e25357987e0e32b53e42d76ee0b35a192c383c867c22a09360218",
   "docs/images/archived_replay_monthly.png": "f8223833d265128f77f0f78a4b0ae46740a09cb43cc9391a7c54b7040cbe1786",
   "analysis/plot_monte_carlo_es.py": "51c836af847bffde6afddc6328628e61a6d357791b172c2bcaa36b84f74a54d9",
@@ -101,5 +101,5 @@
   "analysis/results/archived_replay/monte_carlo_summary.json": "0dc99214f5fca56eba3f43afefd6c4d388ba86372a2ef7923435dd83097bad92",
   "docs/images/ml_supertrend_monte_carlo.png": "e2647e83d22a646c7996746fdbd62f1d2332d71f2f413789e29e293866264203",
   "docs/ML_SUPERTREND_MONTE_CARLO.md": "556e17e404c54c7d6f825370542fdd0a3606bba2b452d3a3f98edfe812db245b",
-  "docs/images/trade_return_cdf.png": "ed45a9c17f6336d35a5679c8f5a85f965f192f13cdaa135a64785dd31571526a"
+  "docs/images/ledoit_wolf_correlation.png": "3e8680f6f623b09e8a55f12323fffe0abacdc777cd2c911ae7b97bcfe4490df6"
 }
