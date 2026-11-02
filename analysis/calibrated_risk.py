@@ -47,7 +47,7 @@ def main():
    increments=z@mat.T-.5*vv
   if model.startswith('20%'):increments[:,0,:]+=np.log(.8)
   stock=np.exp(np.cumsum(increments,axis=1)).mean(axis=2);stock=np.column_stack([np.ones(N),stock])
-  for w in [.4,.6]:
+  for w in [.4,.6,.75]:
    eq=1+w*(stock-1);rows.append(dict(model=model,exposure=w,**measure(eq)))
    if j==0 and w==.4:fan=eq
  result=pd.DataFrame(rows);result.to_csv(out/'calibrated_scenarios.csv',index=False)
@@ -56,10 +56,10 @@ def main():
  plt.rcParams.update({'font.family':'serif','font.size':8,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42})
  fig,axs=plt.subplots(2,2,figsize=(7,4.4),layout='constrained');ax=axs[0,0];q=np.quantile(fan,[.05,.25,.5,.75,.95],axis=0)*100;ax.fill_between(range(16),q[0],q[4],color='.86',label='5th-95th percentile');ax.fill_between(range(16),q[1],q[3],color='.6',label='25th-75th');ax.plot(q[2],c='black',lw=1);ax.set(title='A  Calibrated Monte Carlo fan',xlabel='Trading sessions',ylabel='Account value (start = 100)');ax.legend(fontsize=6,frameon=False)
  labels=['Gaussian','t(5)','Block bootstrap','Crisis','20% gap'];ax=axs[0,1];y=np.arange(5)
- for k,w in enumerate([.4,.6]):
-  v=result[result.exposure==w].es95_pct;ax.barh(y+(k-.5)*.32,v,height=.32,color=['.25','.7'][k],label=f'{w:.0%} exposure')
+ for k,w in enumerate([.4,.6,.75]):
+  v=result[result.exposure==w].es95_pct;ax.barh(y+(k-1)*.24,v,height=.24,color=['#168a66','#6e9d91','#b7c9c5'][k],label=f'{w:.0%} exposure')
  ax.set_yticks(y,labels);ax.invert_yaxis();ax.set(title='B  Tail-risk model comparison',xlabel='15-session expected shortfall (%)');ax.legend(fontsize=6,frameon=False)
- ax=axs[1,0];ax.imshow(corr,cmap='Greys',vmin=-1,vmax=1);ax.set_xticks(range(6),names,rotation=45);ax.set_yticks(range(6),names);ax.set_title('C  Ledoit-Wolf shrinkage correlation')
+ ax=axs[1,0];ax.imshow(corr,cmap='Greys',vmin=-1,vmax=1);asset_labels=[f'Asset {chr(65+i)}' for i in range(6)];ax.set_xticks(range(6),asset_labels,rotation=45);ax.set_yticks(range(6),asset_labels);ax.set_title('C  Ledoit-Wolf shrinkage correlation')
  for i in range(6):
   for k in range(6):ax.text(k,i,f'{corr[i,k]:.2f}',ha='center',va='center',fontsize=6,color='white' if corr[i,k]>.55 else 'black')
  ax=axs[1,1];r=result[result.exposure==.4];ax.barh(y,r.es95_pct,color='.7',label='No liquidation');ax.plot(r.guard_es95_pct,y,'ko',ms=3,label='6% daily-close trigger');ax.set_yticks(y,labels);ax.invert_yaxis();ax.set(title='D  Effect of liquidation rule',xlabel='15-session expected shortfall (%)');ax.legend(fontsize=6,frameon=False)

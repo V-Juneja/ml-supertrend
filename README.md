@@ -1,6 +1,6 @@
 # ML Supertrend
 
-[Strategy declaration](reports/Strategy_Declaration.pdf) · [Backtest evidence](docs/BACKTEST.md) · [Repository layout](docs/REPOSITORY.md) · [Bands-only Pine overlay](tradingview/ml_supertrend_bands_only.pine)
+[Strategy declaration](reports/Strategy_Declaration.pdf) · [Direct 30-minute replay](docs/DIRECT_MODEL_BACKTEST.md) · [Rubric self-assessment](docs/IQIC_RUBRIC_REVIEW.md) · [Archived-ranking replay](docs/BACKTEST.md) · [Repository layout](docs/REPOSITORY.md) · [Bands-only Pine overlay](tradingview/ml_supertrend_bands_only.pine)
 
 Juneja Street's adaptive reversal signal engine, using machine learning to train indicator settings as completed market candles arrive. It runs hypothetical long and short positions in the background, scores their completed outcomes, and uses that feedback to adjust how quickly a volatility-based indicator responds to price.
 
@@ -88,7 +88,7 @@ The preferred chart file is `tradingview/ml_supertrend_bands_only.pine`. It was 
 
 ![Calibrated risk models](docs/images/calibrated_dashboard.png)
 
-Fifty thousand 15-session paths per model, calibrated to 59 joint daily returns from provider-sourced DELL, MSFT, JPM, UNH, GE and XOM prices, 2 July-25 September 2026. These are an illustrative risk basket, not actual holdings. The comparison uses covariance shrinkage, heavy-tailed log shocks, five-session joint block resampling, a correlation/volatility crisis and a common price gap. Results are conditional risk experiments, not strategy-return forecasts. See `docs/RISK_TESTS.md`.
+Fifty thousand 15-session paths per model, calibrated to 59 joint daily returns from a provider-sourced, cross-sector historical sample, 2 July-25 September 2026. This is an illustrative risk basket, not actual holdings or the five-position strategy portfolio. The comparison uses covariance shrinkage, heavy-tailed log shocks, five-session joint block resampling, a correlation/volatility crisis and a common price gap. Results are conditional risk experiments, not strategy-return forecasts. See `docs/RISK_TESTS.md`.
 
 ## Archived BUY-list backtest
 

@@ -52,6 +52,16 @@
       "max_drawdown95_pct": 5.145978568848408
     },
     {
+      "model": "Calibrated Gaussian",
+      "exposure": 0.75,
+      "var95_pct": 5.364576888129383,
+      "es95_pct": 6.5617468482511345,
+      "prob_drawdown6_pct": 7.1819999999999995,
+      "mc_probability_se_pp": 0.1154659149706094,
+      "guard_es95_pct": 6.250096331266139,
+      "max_drawdown95_pct": 6.421763004945342
+    },
+    {
       "model": "Student-t(5)",
       "exposure": 0.4,
       "var95_pct": 2.8605509883834457,
@@ -70,6 +80,16 @@
       "mc_probability_se_pp": 0.06205525022107316,
       "guard_es95_pct": 5.3134742326630136,
       "max_drawdown95_pct": 5.1186449409910795
+    },
+    {
+      "model": "Student-t(5)",
+      "exposure": 0.75,
+      "var95_pct": 5.363533103218955,
+      "es95_pct": 6.675924109875917,
+      "prob_drawdown6_pct": 6.758,
+      "mc_probability_se_pp": 0.11226125208637218,
+      "guard_es95_pct": 6.366728853185011,
+      "max_drawdown95_pct": 6.384329734637192
     },
     {
       "model": "5-session block bootstrap",
@@ -92,6 +112,16 @@
       "max_drawdown95_pct": 4.398999328587887
     },
     {
+      "model": "5-session block bootstrap",
+      "exposure": 0.75,
+      "var95_pct": 4.601579677458245,
+      "es95_pct": 5.475988240799136,
+      "prob_drawdown6_pct": 2.508,
+      "mc_probability_se_pp": 0.06992995581294185,
+      "guard_es95_pct": 5.573799495665245,
+      "max_drawdown95_pct": 5.490429130928038
+    },
+    {
       "model": "Crisis: vol x1.5, rho .90",
       "exposure": 0.4,
       "var95_pct": 7.787721817724766,
@@ -112,6 +142,16 @@
       "max_drawdown95_pct": 13.831267260271005
     },
     {
+      "model": "Crisis: vol x1.5, rho .90",
+      "exposure": 0.75,
+      "var95_pct": 14.60197840823394,
+      "es95_pct": 17.547259681525727,
+      "prob_drawdown6_pct": 73.188,
+      "mc_probability_se_pp": 0.19810687297516966,
+      "guard_es95_pct": 9.103274996410473,
+      "max_drawdown95_pct": 17.207187174241557
+    },
+    {
       "model": "20% common opening gap",
       "exposure": 0.4,
       "var95_pct": 10.298982612438127,
@@ -130,6 +170,16 @@
       "mc_probability_se_pp": 0.0,
       "guard_es95_pct": 13.15252248878433,
       "max_drawdown95_pct": 15.77694135821021
+    },
+    {
+      "model": "20% common opening gap",
+      "exposure": 0.75,
+      "var95_pct": 19.31059239832148,
+      "es95_pct": 20.271438866570936,
+      "prob_drawdown6_pct": 100.0,
+      "mc_probability_se_pp": 0.0,
+      "guard_es95_pct": 16.440653110980417,
+      "max_drawdown95_pct": 19.72117669776276
     }
   ],
   "scope": "Illustrative cross-sector risk basket, not an actual position list or a strategy replay. Zero price drift is imposed only in Gaussian models. Bootstrap and t stress do not estimate expected price returns; parameter uncertainty and real execution are not captured."

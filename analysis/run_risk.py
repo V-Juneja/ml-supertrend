@@ -15,7 +15,7 @@ def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--output-dir',type=Path,default=Path('outputs/risk'));args=ap.parse_args();out=args.output_dir;out.mkdir(parents=True,exist_ok=True)
  seed=20261101;N=100000;rng=np.random.default_rng(seed);common=rng.normal(size=(N,1));idio=rng.normal(size=(N,6));rows=[]
  for days in [15,126]:
-  for exposure in [.2,.4,.6]:
+  for exposure in [.2,.4,.6,.75]:
    for sigma in [.25,.45,.65]:
     for rho in [0,.35,.65,.9]:
      z=np.sqrt(rho)*common+np.sqrt(1-rho)*idio
@@ -33,14 +33,14 @@ def main():
    prices*=np.exp(-.5*sigma*sigma/252+sigma/np.sqrt(252)*z)
    if t==0 and 'gap' in model:prices*=.8 if model.startswith('20') else .9
    stock[:,t+1]=prices.mean(axis=1)
-  for exposure in [.4,.6]:
+  for exposure in [.4,.6,.75]:
    eq=1+exposure*(stock-1);dd=1-eq/np.maximum.accumulate(eq,axis=1);guard=np.ones_like(eq);halted=np.zeros(count,bool);peak=np.ones(count)
    for t in range(days):
     guard[:,t+1]=np.where(halted,guard[:,t],eq[:,t+1]);peak=np.maximum(peak,guard[:,t+1]);halted|=guard[:,t+1]/peak-1<=-.06
    daily.append(dict(model=model,exposure=exposure,prob_drawdown6_pct=float((dd.max(axis=1)>=.06).mean()*100),guard_es95_pct=metrics(guard[:,-1]-1)['es95_pct'],**metrics(eq[:,-1]-1)))
    if model=='Gaussian' and exposure==.4:paths['fan']=eq
  daily=pd.DataFrame(daily);daily.to_csv(out/'daily_risk.csv',index=False)
- shocks=pd.DataFrame([dict(exposure=w,stock_loss_pct=k*100,account_loss_pct=w*k*100) for w in [.2,.4,.6] for k in [.05,.1,.2,.3,.5]]);shocks.to_csv(out/'deterministic_shocks.csv',index=False)
+ shocks=pd.DataFrame([dict(exposure=w,stock_loss_pct=k*100,account_loss_pct=w*k*100) for w in [.2,.4,.6,.75] for k in [.05,.1,.2,.3,.5]]);shocks.to_csv(out/'deterministic_shocks.csv',index=False)
  # Stop-fill stress: planned risk across the book vs worsening loss/stop multiples.
  stops=pd.DataFrame([dict(aggregate_planned_risk_pct=r,loss_to_planned_multiple=m,account_loss_pct=r*m) for r in [1,2,3] for m in [1,1.5,2,3]]);stops.to_csv(out/'stop_overshoot.csv',index=False)
  base=grid[(grid.days==15)&(grid.sigma==.45)&(grid.rho==.65)].to_dict('records')
@@ -53,8 +53,8 @@ def main():
  for i in range(3):
   for j in range(4):ax.text(j,i,f'{g.values[i,j]:.1f}',ha='center',va='center',color='white' if g.values[i,j]>8 else 'black')
  ax=axs[1,0];d=daily[daily.exposure==.4];x=np.arange(4);ax.barh(x-.16,d.es95_pct,height=.32,color='.65',label='No liquidation');ax.barh(x+.16,d.guard_es95_pct,height=.32,color='.2',label='6% daily-close trigger');ax.set_yticks(x,models);ax.invert_yaxis();ax.set(title='C  Liquidation reduces, but cannot cap, tail loss',xlabel='15-session expected shortfall (%)');ax.legend(fontsize=6,frameon=False)
- ax=axs[1,1];x=np.arange(3)
- for j,w in enumerate([.2,.4,.6]):ax.bar(x+(j-1)*.25,[w*k*100 for k in [.1,.2,.3]],.25,color=[".8",".5",".15"][j],label=f'{w:.0%} exposure')
+ ax=axs[1,1];x=np.arange(3);width=.19
+ for j,w in enumerate([.2,.4,.6,.75]):ax.bar(x+(j-1.5)*width,[w*k*100 for k in [.1,.2,.3]],width,color=["#b7d8ce","#71aa98","#438675","#1d5f52"][j],label=f'{w:.0%} exposure')
  ax.set_xticks(x,['-10%','-20%','-30%']);ax.set(title='D  Correlated equity gap stress',xlabel='Simultaneous stock-book shock',ylabel='Account loss (%)');ax.legend(fontsize=6,frameon=False)
  fig.savefig(out/'declared_risk_dashboard.pdf',bbox_inches='tight');fig.savefig(out/'declared_risk_dashboard.png',dpi=450,bbox_inches='tight');plt.close(fig)
  fig,ax=plt.subplots(figsize=(7,1.5),layout='constrained')

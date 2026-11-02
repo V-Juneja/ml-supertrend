@@ -1,0 +1,61 @@
+{
+  "source": "Alpaca SIP 30-minute OHLCV; source bars not redistributed",
+  "test_start": "2026-07-02",
+  "test_end": "2026-10-09",
+  "regular_session": "09:30-16:00 America/New_York",
+  "warmup_start": "2026-06-01",
+  "symbols": [
+    "AMD",
+    "BNS",
+    "CRM",
+    "CRWD",
+    "DELL",
+    "FTNT",
+    "HOOD",
+    "ING",
+    "INTC",
+    "MET",
+    "MPC",
+    "MRVL",
+    "MU",
+    "NET",
+    "PANW",
+    "SNOW",
+    "VLO"
+  ],
+  "cost_cases_bps_per_side": [
+    5,
+    10
+  ],
+  "adaptive_vs_fixed": "Same signal engine/configuration; adaptation alone differs",
+  "limits": {
+    "max_positions": 5,
+    "max_name_weight": 0.15,
+    "max_gross_weight": 0.75,
+    "max_sector_weight": 0.2,
+    "max_technology_cluster_weight": 0.25,
+    "planned_name_loss": 0.005,
+    "aggregate_planned_loss": 0.02,
+    "stop_atr_multiple": 2
+  },
+  "input_sha256": {
+    "AMD_30Min.csv": "9b07aefba547cf525b00b415b59cf32e4056d15faf1b8751982c8021dd4bfa29",
+    "BNS_30Min.csv": "add6ca7f0b6e1ec68d8704c14d6a10673bf9bc574f7f59d07c2d97b158e18d4e",
+    "CRM_30Min.csv": "671ac239f070874713fc276aebc07d433d41ea2bad236dd1c454129581fdbbd0",
+    "CRWD_30Min.csv": "5b3093e7e4c6a01385746957ac65a2df6c8eab4741b6b219ae682999eff0b3cb",
+    "DELL_30Min.csv": "7083f39dd96313ac3ea05967e1fc91cf98c9ee835390cee235911f1b4bbc846a",
+    "FTNT_30Min.csv": "0bb7b099d7fe7f75e1922582edebdb8759fbf256b5fcfb731480e83840254a7c",
+    "HOOD_30Min.csv": "b09f7fc6128d3da87e143c8e36eede70a1c98333ee3fab1b73a463384fcd4da6",
+    "ING_30Min.csv": "e26e159ceb108139866405fa017a6d3886181146f8c8c982d6b20668fa072e16",
+    "INTC_30Min.csv": "8b65ffdf918ceceab3ee46c0e0031b1a2cd3bf470d019815b7f6d736d716378f",
+    "MET_30Min.csv": "965a879526eb9a6827ea041efa3865f428ea786a4f5ca941b434d79fd82c16ff",
+    "MPC_30Min.csv": "e59ad117c52b58af251ea50e27f8eb530c2aaf6b6763ed4cbcac03752d046443",
+    "MRVL_30Min.csv": "641f5ef3c52bedd71026e8e953652aecfaac951e535e3d7aaf3b83f722cdebe5",
+    "MU_30Min.csv": "3d2e45535f6dd1282805ae6cfb2d2dc61d72e7821a2cf134d5fb9c16d58c5a98",
+    "NET_30Min.csv": "59daea18fc9ed299080f6e64b514d75a2fa816176b388ea291c7cbbfa3b211fc",
+    "PANW_30Min.csv": "bd99f296540156c0cd9c2b1fe34bfbc11bec186fcfbf16695e7493f176aada4c",
+    "SNOW_30Min.csv": "0c0404740f45cd89bad3e3b0d6b41f0be7316712d9b1f5d004a057edb92d1ab7",
+    "VLO_30Min.csv": "e318547ddb73f13817d1769261789136cc5a553ff258bc8a9794d4471b198352",
+    "SPY_30Min.csv": "59f95147b558f9298cd956ab049f9a71f2bc6e9498a4c45df65c1a97ad2a1bef"
+  }
+}
