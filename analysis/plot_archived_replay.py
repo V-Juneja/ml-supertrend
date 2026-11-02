@@ -6,6 +6,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--results", type=Path, default=Path("analysis/results/archived_replay"))
@@ -24,12 +25,14 @@ b = pd.read_csv(a.results / "qqq_normalized_equity.csv", parse_dates=["date"])
 fig, (ax, ddax) = plt.subplots(2, 1, figsize=(8.2, 3.35), sharex=True,
                                 gridspec_kw={"height_ratios": [2.1, 1]},
                                 layout="constrained")
-ax.plot(d.date, d.total_value / 1000, color=".08", lw=1.5,
+green = "#24824c"
+red = "#bd4545"
+ax.plot(d.date, d.total_value / 1000, color=green, lw=1.5,
        label="Archived BUY-ranking replay")
-ax.plot(b.date, b.value / 1000, color=".55", lw=1.2, ls="--",
+ax.plot(b.date, b.value / 1000, color=red, lw=1.2, ls="--",
        label="QQQ benchmark")
-for frame, col, color, style in [(d, "total_value", ".08", "-"),
-                                 (b, "value", ".55", "--")]:
+for frame, col, color, style in [(d, "total_value", green, "-"),
+                                 (b, "value", red, "--")]:
     value = frame[col].to_numpy(float)
     drawdown = (value / np.maximum.accumulate(value) - 1) * 100
     dates = frame.date
@@ -49,7 +52,8 @@ months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", 
 pivot = m.pivot(index="year", columns="month", values="return").reindex(index=[2025, 2026], columns=range(1, 13)) * 100
 fig, ax = plt.subplots(figsize=(8.2, 1.38), layout="constrained")
 values = np.ma.masked_invalid(pivot.to_numpy(float))
-ax.imshow(values, cmap="Greys", vmin=-20, vmax=20, aspect="auto")
+rg = LinearSegmentedColormap.from_list("red_white_green", [red, "#ffffff", green])
+ax.imshow(values, cmap=rg, norm=TwoSlopeNorm(vmin=-20, vcenter=0, vmax=20), aspect="auto")
 ax.set_xticks(np.arange(12), months)
 ax.set_yticks(np.arange(2), [str(y) for y in pivot.index])
 ax.set_title("Monthly net returns (%)", loc="left", fontsize=9, pad=4)
@@ -65,6 +69,6 @@ for i in range(values.shape[0]):
         v = float(values[i, j])
         label = f"{v:+.1f}"
         ax.text(j, i, label, ha="center", va="center", fontsize=6.5,
-                color="white" if v > 10 else ".1")
+                color="white" if abs(v) > 11 else ".1")
 fig.savefig(a.output / "archived_replay_monthly.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
