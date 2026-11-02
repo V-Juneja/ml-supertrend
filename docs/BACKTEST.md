@@ -51,20 +51,28 @@ CAGR uses elapsed calendar days (365.2425/year). Drawdown includes the initial $
 
 ## Trade expectancy
 
-Expected return per trade (trade expectancy) is the mean net gain or loss as a percentage of the capital committed to a trade. A positive value means average gains exceeded average losses and modeled costs in the observed sample. It describes an average across trades; it is neither a win probability nor a guaranteed outcome for the next trade.
+Net trade expectancy is the mean gain or loss per completed trade, expressed as a percentage of entry capital. Positive expectancy means gains exceeded losses and modeled costs across the historical sample. It is neither a win probability nor a guaranteed next-trade return.
 
-**Net Trade Expectancy Equation:** `e = p W - (1-p) D - c`
+**Net Trade Expectancy Equation:** `e = p W - (1-p) D`
 
-- `p`: fraction of completed trades with positive gross P&L, before modeled costs.
-- `W`: mean gross return among those winners, in percentage points of entry cash debit.
-- `D`: positive magnitude of mean gross return among the remaining trades, in the same units.
-- `c`: mean round-trip fees plus adverse slippage, in the same units.
-- `e`: average return after both fees and slippage. A 1% result means $100 per $10,000 committed, on average.
+Here `p` is the net win rate, `W` the mean net winning return, and `D` the positive magnitude of the mean net losing return. These inputs already include fees and slippage: costs must not be subtracted a second time. All return terms use percentage units.
 
-The archived replay has **622 closed trades**. Using their recorded fills gives `p = 47.7492%`, `W = 8.06654%`, `D = 5.42310%`, and `c = 0.200818%`. These produce **e = +0.817278%**, or **$81.73 net per $10,000 position on average**. Ten open positions are excluded. Return terms use the actual all-in entry debit as denominator; gross P&L removes both entry and exit execution frictions, and costs are then subtracted once. Small discrepancies from the rounded PDF inputs come from rounding.
+| Core trade statistic | Historical result |
+| --- | ---: |
+| Completed trades | 622 |
+| Win rate | 46.62% |
+| Mean net profit / return per trade | +$81.73 / +0.8173% |
+| Median trade return | -0.6268% |
+| Average net winning / losing return | +8.05% / -5.50% |
+| Profit factor | 1.28 |
+| Break-even win rate at observed payoffs | 40.59% |
+| Worst trade | -40.03% |
+| Longest losing streak | 15 trades |
 
-The baseline net winning-trade fraction is 46.62%; it differs from `p` because costs turn some small gross gains into net losses. A win rate below 50% can coexist with positive expectancy when winners are sufficiently larger than losers. Average trade expectancy is distinct from cumulative account return: positions overlap, capital is reused, and open holdings still affect account equity.
+Average winners are 1.46 times average losers. The observed win rate therefore exceeds the **40.59% break-even win rate**, computed as `D / (W + D)`. Profit factor is the sum of positive net P&L divided by the absolute sum of negative net P&L: **$1.28 earned on winning trades for each $1 lost on losing trades**. The negative median means the middle-ranked trade lost money, while larger winners lifted the average above zero. The 15-loss streak and worst trade show the importance of sizing and gap risk.
 
-[Per-trade calculations](../analysis/results/archived_replay/closed_trade_expectancy.csv) · [Full-precision summary](../analysis/results/archived_replay/expectancy_summary.json)
+All 622 completed trades are included; ten open positions are excluded. Streaks follow recorded SELL-ledger order, preserving same-day ordering. Returns divide net P&L by each trade's all-in entry cash debit. Average expectancy is distinct from cumulative account return because trades overlap, capital is reused and open holdings affect marked account equity.
 
-These are historical descriptive statistics. Dependence between concurrent trades and changing market conditions limits their use as forecasts.
+[Audited core statistics](../analysis/results/archived_replay/core_trade_statistics.json) · [Per-trade calculations](../analysis/results/archived_replay/closed_trade_expectancy.csv)
+
+The separate expectancy_summary.json retains the equivalent gross-return-minus-cost decomposition for calculation reconciliation. Its gross win fraction differs from the net win rate above because costs turn some small gross gains into net losses. Concurrent trades are dependent; these descriptive results are not forecasts.
