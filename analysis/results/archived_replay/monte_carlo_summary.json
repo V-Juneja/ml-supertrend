@@ -13,5 +13,9 @@
   "p95_terminal_return_pct": 131.43317437691996,
   "negative_terminal_return_probability_pct": 10.874,
   "mean_return_bottom_5_pct": -21.929315522464154,
-  "p95_maximum_drawdown_loss_pct": 35.46394562250427
+  "p95_maximum_drawdown_loss_pct": 35.46394562250427,
+  "median_annualized_sharpe_zero_rf": 1.232913369222926,
+  "p05_annualized_sharpe_zero_rf": -0.18463372924942434,
+  "p95_annualized_sharpe_zero_rf": 2.6818126062518934,
+  "negative_sharpe_probability_pct": 7.580000000000001
 }

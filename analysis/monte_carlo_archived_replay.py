@@ -34,6 +34,7 @@ def main():
     rng = np.random.default_rng(a.seed)
     terminal = np.empty(a.paths)
     max_drawdown = np.empty(a.paths)
+    path_sharpe = np.empty(a.paths)
     path_equity = np.empty((a.paths, a.horizon + 1), dtype=np.float32)
     path_equity[:, 0] = 1.0
     blocks_per_path = (a.horizon + a.block - 1) // a.block
@@ -43,6 +44,7 @@ def main():
         starts = rng.integers(0, len(returns), size=(n, blocks_per_path))
         indices = (starts[:, :, None] + np.arange(a.block)) % len(returns)
         sampled = returns[indices.reshape(n, -1)[:, :a.horizon]]
+        path_sharpe[first:first+n] = np.sqrt(252) * sampled.mean(axis=1) / sampled.std(axis=1, ddof=1)
         wealth = np.cumprod(1.0 + sampled, axis=1)
         path_equity[first:first+n, 1:] = wealth
         peak = np.maximum.accumulate(np.column_stack((np.ones(n), wealth)), axis=1)[:, 1:]
@@ -66,6 +68,10 @@ def main():
         "negative_terminal_return_probability_pct": float((terminal < 0).mean() * 100),
         "mean_return_bottom_5_pct": float(terminal[terminal <= p05].mean() * 100),
         "p95_maximum_drawdown_loss_pct": float(-np.quantile(max_drawdown, .05) * 100),
+        "median_annualized_sharpe_zero_rf": float(np.median(path_sharpe)),
+        "p05_annualized_sharpe_zero_rf": float(np.quantile(path_sharpe, .05)),
+        "p95_annualized_sharpe_zero_rf": float(np.quantile(path_sharpe, .95)),
+        "negative_sharpe_probability_pct": float((path_sharpe < 0).mean() * 100),
     }
     a.summary.parent.mkdir(parents=True, exist_ok=True)
     a.summary.write_text(json.dumps(summary, indent=2) + "\n")
