@@ -29,8 +29,8 @@ The raw lower boundary trails upward while the previous close is above the previ
 
 `d_i = 2 × ATR_24,i`
 
-`q_i = floor(min(0.10 E/P_i, 0.005 E/d_i))`
+`q_i = floor(min(0.15 E/P_i, 0.005 E/d_i))`
 
-E is marked account equity, P_i the entry price of stock i, ATR_24,i its fixed 24-candle smoothed true range, d_i the dollar stop distance and q_i whole shares. Remaining account and sector capacity can reduce q_i further. For a $10,000 value cap and the provider-recorded DELL close of $563.17, the value term permits 17 whole shares. The measured entry ATR can reduce that quantity through the separate loss cap.
+E is marked account equity, P_i the entry price of stock i, ATR_24,i its fixed 24-candle smoothed true range, d_i the dollar stop distance and q_i whole shares. Remaining account and sector capacity can reduce q_i further. For a $15,000 value cap and the provider-recorded DELL close of $563.17, the value term permits 26 whole shares. The measured entry ATR can reduce that quantity through the separate loss cap.
 
 Internal probe settings do not override these declared account limits.

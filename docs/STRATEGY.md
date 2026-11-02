@@ -17,6 +17,6 @@ Fresh-low detection is more specific than a rolling-minimum touch: the source co
 
 The declared baseline uses 30-minute regular-session bars, Reversal mode, hlcc4 price basis, initial ATR length 24 and multiplier 1.4, RSI length 14, momentum memory 50 bars and spacing 10 bars. Volume-surge and major-level filtering are off. Adaptive learning is on; tick pressure is off. Plot bands can remain locked at baseline while the signal engine uses adaptive bands. Use signal outputs for decisions.
 
-Portfolio limits live in `config/declaration.json`. The CSV runner does not enforce them or execute trades. Long-only does not mean the learner lacks a short simulation; the learner and the account are separate parts of the system.
+Portfolio limits are at most five concurrent positions, 15% of marked equity per name and 40% total stock exposure, subject to the separate stop-risk and concentration budgets. Settings live in `config/declaration.json`. The CSV runner does not enforce them or execute trades. Long-only does not mean the learner lacks a short simulation; the learner and the account are separate parts of the system.
 
 When several entries compete for capacity, process earlier confirmed signals first and use alphabetical ticker order for a timestamp tie. Apply the remaining portfolio, sector, cluster and planned-loss budgets after each accepted order. This belongs to the declared account overlay; the single-symbol CSV runner does not implement a portfolio order queue.
