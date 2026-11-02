@@ -29,5 +29,10 @@ def main():
     for row in s.itertuples():
         q=pd.read_csv(P/(row.case+'_daily.csv'));np.testing.assert_allclose(q.total_value.iloc[-1]/100000-1,row.total_return,rtol=1e-12)
         np.testing.assert_allclose(q.total_value,q.cash+q.holdings_value,rtol=1e-12)
+    e=pd.read_csv(P/'closed_trade_expectancy.csv');z=json.loads((P/'expectancy_summary.json').read_text())
+    assert len(e)==len(f[f.action.eq('SELL')])==622
+    np.testing.assert_allclose(e.gross_return_pct-e.round_trip_cost_pct,e.net_return_pct,atol=1e-10)
+    np.testing.assert_allclose(e.net_pnl.to_numpy(),f.loc[f.action.eq('SELL'),'profit'].to_numpy(),atol=1e-8)
+    np.testing.assert_allclose(e.net_return_pct.mean(),z['mean_net_return_pct'],atol=1e-12)
     print('PASS: 1,254 fills; cash ledger; 10 open holdings; 290 daily marks; monthly compounding; four sensitivity curves.')
 if __name__=='__main__':main()

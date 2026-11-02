@@ -48,3 +48,23 @@ python analysis/audit_published_results.py
 Daily bar columns: `date,symbol,open,close`; include QQQ to define the trading-session calendar and cover every held symbol/date. Missing prices fail the run. Retain the recorded date range and corporate-action treatment. Use the provenance input hashes to distinguish an exact data match from a replay on a refreshed provider history.
 
 CAGR uses elapsed calendar days (365.2425/year). Drawdown includes the initial $100,000 capital in the running peak. Daily Sharpe uses all marked session returns, including the first session relative to initial capital, 252 sessions/year, sample standard deviation and zero risk-free rate. Monthly returns compound; the first month is partial. Neither Sharpe nor CAGR is a forecast.
+
+## Trade expectancy
+
+Expected return per trade (trade expectancy) is the mean net gain or loss as a percentage of the capital committed to a trade. A positive value means average gains exceeded average losses and modeled costs in the observed sample. It describes an average across trades; it is neither a win probability nor a guaranteed outcome for the next trade.
+
+**Net Trade Expectancy Equation:** `e = p W - (1-p) D - c`
+
+- `p`: fraction of completed trades with positive gross P&L, before modeled costs.
+- `W`: mean gross return among those winners, in percentage points of entry cash debit.
+- `D`: positive magnitude of mean gross return among the remaining trades, in the same units.
+- `c`: mean round-trip fees plus adverse slippage, in the same units.
+- `e`: average return after both fees and slippage. A 1% result means $100 per $10,000 committed, on average.
+
+The archived replay has **622 closed trades**. Using their recorded fills gives `p = 47.7492%`, `W = 8.06654%`, `D = 5.42310%`, and `c = 0.200818%`. These produce **e = +0.817278%**, or **$81.73 net per $10,000 position on average**. Ten open positions are excluded. Return terms use the actual all-in entry debit as denominator; gross P&L removes both entry and exit execution frictions, and costs are then subtracted once. Small discrepancies from the rounded PDF inputs come from rounding.
+
+The baseline net winning-trade fraction is 46.62%; it differs from `p` because costs turn some small gross gains into net losses. A win rate below 50% can coexist with positive expectancy when winners are sufficiently larger than losers. Average trade expectancy is distinct from cumulative account return: positions overlap, capital is reused, and open holdings still affect account equity.
+
+[Per-trade calculations](../analysis/results/archived_replay/closed_trade_expectancy.csv) · [Full-precision summary](../analysis/results/archived_replay/expectancy_summary.json)
+
+These are historical descriptive statistics. Dependence between concurrent trades and changing market conditions limits their use as forecasts.

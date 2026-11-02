@@ -1,0 +1,11 @@
+{
+  "closed_trades": 622,
+  "open_positions_excluded": 10,
+  "gross_win_fraction": 0.477491961414791,
+  "mean_gross_win_pct": 8.066543614867598,
+  "mean_gross_loss_magnitude_pct": 5.4231013754859125,
+  "mean_round_trip_cost_pct": 0.2008179910458817,
+  "mean_net_return_pct": 0.817277678701306,
+  "mean_net_pnl_usd": 81.72776787013059,
+  "formula": "e = p W - (1-p) D - c; gross-return win classification; all return terms percentage of entry cash debit"
+}
