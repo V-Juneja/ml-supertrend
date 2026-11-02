@@ -99,6 +99,8 @@ The preferred chart file is `tradingview/ml_supertrend_bands_only.pine`. It was 
 | 20 bps per side | +39.11% | -22.81% |
 | 10 bps + one extra session for ranking eligibility | +43.49% | -21.91% |
 
+What the charts say: the archived replay finished above QQQ, but its 21.10% drawdown shows the cost of pursuing reversals through pullbacks. Nine of 14 months were positive; the -16.7% July 2026 result shows gains were uneven. Red histogram bars are loss sessions. The Ledoit–Wolf panel uses the eight stocks most frequently bought in the replay, ranked by entry count rather than randomly sampled; correlations of +0.48 to +0.87 show that these picks often moved together and provided limited diversification. In the resampled one-year paths, the median was positive, but 10.87% ended below the starting value and the 5th-percentile return was -11.85%.
+
 ![Archived replay equity and drawdown](docs/images/archived_replay_equity.png)
 ![Monthly net returns](docs/images/archived_replay_monthly.png)
 ![Archived replay daily-return distribution and Ledoit-Wolf correlation](docs/images/ledoit_wolf_correlation.png)

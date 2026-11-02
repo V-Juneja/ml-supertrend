@@ -36,7 +36,17 @@ The standalone replay reproduced all **1,254 baseline fills** (632 BUY, 622 SELL
 
 ## Replay return and covariance chart
 
-The declaration's daily-return histogram uses the 290 baseline equity marks, including the first session relative to initial capital. Its Ledoit–Wolf correlation panel uses split-adjusted daily closes for the eight most frequently entered names, ordered by entry count, over the same 290-session replay calendar. The 289 close-to-close return vectors are aligned by date. `sklearn.covariance.LedoitWolf` estimates the covariance matrix; dividing each element by the product of its assets' estimated standard deviations produces the plotted correlation matrix. This is a descriptive concentration diagnostic; it does not change signals, sizing, or the long-only rules. Red histogram bars are negative portfolio-return sessions; red heatmap cells are negative pairwise correlations.
+The declaration's daily-return histogram uses the 290 baseline equity marks, including the first session relative to initial capital. Its Ledoit–Wolf correlation panel uses split-adjusted daily closes for the eight most frequently entered names, ordered by entry count (ID 1 is most frequent). These are the actual replay stocks, not randomly drawn names; ticker labels are suppressed in the figure. The 289 close-to-close return vectors are aligned by date.
+
+Ledoit–Wolf shrinks the sample covariance matrix toward a stable reference:
+
+$$\widehat{\Sigma}_{LW}=(1-\lambda)S+\lambda\mu I$$
+
+`S` is the sample covariance of daily returns; `I` is the identity matrix; `mu` is the average asset variance; and `lambda` is the shrinkage fraction estimated by `sklearn.covariance.LedoitWolf`, between zero and one. The reference `mu I` assumes equal variance and zero pairwise covariance. Shrinkage reduces noisy estimates of co-movement. The plotted correlation is:
+
+$$\rho_{ij}=\frac{\widehat{\Sigma}_{LW,ij}}{\sqrt{\widehat{\Sigma}_{LW,ii}\widehat{\Sigma}_{LW,jj}}}$$
+
+`rho_ij` is the correlation between assets `i` and `j`; the denominator rescales covariance by both assets' estimated volatility. Correlation ranges from -1 (they move in opposite directions) through 0 (little linear co-movement) to +1 (they move together). Here, off-diagonal estimates range from +0.48 to +0.87, showing substantial shared movement among the most frequently selected stocks and limited diversification from holding several. This is a retrospective risk diagnostic, not a trading input. Red histogram bars are negative portfolio-return sessions; red heatmap cells would indicate negative pairwise correlations.
 
 The underlying Alpaca SIP bars are not redistributed. The plot command checks their SHA-256 against `provenance.json` before using them:
 
