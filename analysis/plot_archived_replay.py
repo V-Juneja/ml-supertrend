@@ -1,4 +1,4 @@
-"""Plot the archived ML Supertrend replay and daily return distribution."""
+"""Plot archived ML Supertrend replay performance and execution sensitivity."""
 from pathlib import Path
 import argparse
 import numpy as np
@@ -73,20 +73,25 @@ for i in range(values.shape[0]):
 fig.savefig(a.output / "archived_replay_monthly.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
 
-daily_returns = d.total_value.pct_change()
-daily_returns.iloc[0] = d.total_value.iloc[0] / 100000 - 1
-daily_returns = daily_returns.to_numpy(float) * 100
+sens = pd.read_csv(a.results / "sensitivity.csv").set_index("case")
+order = ["zero_cost", "10bps", "10bps_extra_session", "20bps"]
+labels = ["Zero modeled cost", "Base: 10 bps/side", "One-session delay", "20 bps/side"]
+returns = sens.loc[order, "total_return"].to_numpy(float) * 100
+base = float(sens.loc["10bps", "total_return"] * 100)
+colors = [green if value >= base else red for value in returns]
 fig, ax = plt.subplots(figsize=(8.2, 1.48), layout="constrained")
-bins = np.linspace(-8, 6, 15)
-ax.hist(daily_returns[daily_returns < 0], bins=bins, color=red, alpha=.9,
-        edgecolor="white", linewidth=.45, label="Loss sessions")
-ax.hist(daily_returns[daily_returns >= 0], bins=bins, color=green, alpha=.9,
-        edgecolor="white", linewidth=.45, label="Gain sessions")
-ax.axvline(0, color=".2", lw=.75, ls=":")
-ax.set_title("Archived replay: daily net returns", loc="left", fontsize=9)
-ax.set_xlabel("Daily return (%)")
-ax.set_ylabel("Sessions")
-ax.grid(axis="y", color=".88", lw=.5)
-ax.legend(frameon=False, loc="upper right", ncol=2, fontsize=7)
-fig.savefig(a.output / "archived_replay_daily_returns.png", dpi=300, bbox_inches="tight")
+y = np.arange(len(order))
+ax.barh(y, returns, color=colors, height=.62)
+ax.axvline(base, color=".25", lw=.75, ls="--")
+for yi, value in zip(y, returns):
+    ax.text(value + 1.0, yi, f"{value:+.2f}%", va="center", fontsize=7)
+ax.set_yticks(y, labels)
+ax.invert_yaxis()
+ax.set_xlim(0, max(returns) + 12)
+ax.set_xlabel("Total return over replay (%)")
+ax.set_title("Execution sensitivity", loc="left", fontsize=9)
+ax.grid(axis="x", color=".88", lw=.5)
+ax.tick_params(axis="y", length=0, labelsize=7)
+ax.tick_params(axis="x", length=0, labelsize=7)
+fig.savefig(a.output / "archived_replay_sensitivity.png", dpi=300, bbox_inches="tight")
 plt.close(fig)

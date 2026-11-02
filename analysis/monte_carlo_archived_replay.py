@@ -1,4 +1,4 @@
-"""Block-bootstrap the archived daily ML Supertrend BUY-email replay."""
+"""Block-bootstrap the archived ML Supertrend BUY-email replay."""
 from pathlib import Path
 import argparse
 import hashlib

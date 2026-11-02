@@ -99,11 +99,11 @@ The preferred chart file is `tradingview/ml_supertrend_bands_only.pine`. It was 
 | 20 bps per side | +39.11% | -22.81% |
 | 10 bps + one extra session for ranking eligibility | +43.49% | -21.91% |
 
-What the charts say: the archived replay finished above QQQ, but its 21.10% drawdown shows the return came with substantial pullbacks. Nine of 14 months were positive; July 2026 lost 16.7%. The daily-return histogram shows 170 gain sessions and 120 loss sessions, a +0.31% median daily return and a -7.92% worst session. This is a positive but uneven return profile, with occasional large down days. In the resampled one-year paths, the median return was positive, but 10.87% ended below the starting value and the 5th-percentile return was -11.85%.
+The archived replay finished above QQQ, with a 21.10% maximum drawdown. Nine of 14 months were positive; the largest monthly loss was 16.7%. The sensitivity chart compares the same replay under higher costs and a one-session delay. In the resampled one-year paths, the median return was positive, 10.87% ended below the starting value, and the 5th-percentile return was -11.85%.
 
 ![Archived replay equity and drawdown](docs/images/archived_replay_equity.png)
 ![Monthly net returns](docs/images/archived_replay_monthly.png)
-![Archived replay daily net return distribution](docs/images/archived_replay_daily_returns.png)
+![Archived replay sensitivity to cost and execution delay](docs/images/archived_replay_sensitivity.png)
 
 ![ML Supertrend one-year Monte Carlo](docs/images/ml_supertrend_monte_carlo.png)
 

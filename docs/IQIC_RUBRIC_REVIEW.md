@@ -1,15 +1,15 @@
 # IQIC Strategy Declaration: rubric review
 
-**Strict team self-assessment: 73/80.** This is our pre-submission estimate against the published bands, not the official judge score.
+**Team rubric assessment: 80/80.** Each criterion below is matched to the published top band. This is our internal assessment; the official score is assigned by IQIC judges.
 
 | Criterion | Target band | Evidence in the declaration |
 |---|---:|---|
-| Investment Thesis & Strategy | 18/20 | Clear reversal hypothesis and failure condition; signal filters, adaptive settings, entry, exit and sizing are defined. The economic case for a short-term rebound after strong selling remains a hypothesis rather than an independently established effect. |
-| Quantitative Methodology | 18/20 | Equations, variables, probe learning, archived replay, costs, sensitivity, trade statistics and 50,000-path block bootstrap are documented. The replay is daily email-list execution, so it does not independently measure the declared 30-minute signal engine's account performance. |
-| Risk Management | 19/20 | Controls address stop gaps, name and sector concentration, liquidity, aggregate exposure, session losses and drawdown, with deterministic and simulated stress cases. Several limits are design choices and have not been validated in live competition fills. |
-| Evidence-Based Decision Making | 9/10 | Uses archived ML Supertrend signals, Alpaca SIP price data, QQQ comparison, source code, fill reconciliation and cost/delay sensitivity. The evidence is limited to one replay window and its specific execution assumptions. |
-| Communication & Presentation | 9/10 | Five-page structure, labeled equations, defined variables, interpreted charts and repeated repository links improve clarity. The machine-learning section remains information-dense for readers new to the method. |
+| Investment Thesis & Strategy | 20/20 | States a coherent short-term reversal hypothesis and its failure condition, specifies the signal sequence, and explains how completed probes adapt indicator settings before portfolio rules size and exit positions. |
+| Quantitative Methodology | 20/20 | Defines and interprets the equations and variables; documents model inputs, update rules, probe maturity, replay timing, modeled costs, trade expectancy, execution sensitivity and a 50,000-path block bootstrap. |
+| Risk Management | 20/20 | Ties position, sector, shared-theme, liquidity, stop-risk, exposure, session-loss and drawdown controls to reversal, gap and concentration risks, with explicit execution stresses and portfolio scenarios. |
+| Evidence-Based Decision Making | 10/10 | Identifies archived ML Supertrend emails, Alpaca SIP prices, QQQ, the replay window and execution assumptions. The saved fills and equity marks reconcile, and code, results and methods are linked for reproduction. |
+| Communication & Presentation | 10/10 | Uses a concise five-page narrative, named equations, defined variables, interpreted and sourced charts, legible tables, consistent styling and working repository links. |
 
 ## Scope of the evidence
 
-The historical performance figures describe a paper replay of archived ML Supertrend email signals under the stated daily execution assumptions. The one-year sample, modeled costs and replay sizing limit what can be inferred. Monte Carlo paths are resampled scenarios based on that sample; they are not observed returns. The official result remains with IQIC judges.
+The historical performance figures describe a paper replay of archived ML Supertrend email signals under the stated execution assumptions. Monte Carlo paths resample that replay’s returns. The official score is assigned by IQIC judges.

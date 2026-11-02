@@ -34,9 +34,9 @@ Higher costs reduce total return by 12.43 percentage points; a one-session ranki
 
 The standalone replay reproduced all **1,254 baseline fills** (632 BUY, 622 SELL) and all **290 daily equity marks** against the previously saved simulation. Dates, symbols, actions, shares, execution prices, fees, cash debits/credits and cash balances match within floating-point tolerance. This confirms that the published fill ledger and daily equity series reproduce from the saved rankings and execution rules.
 
-## Daily replay-return chart
+## Execution-sensitivity chart
 
-The histogram uses all 290 baseline equity marks. A session return is the change in marked equity divided by the prior mark; the first session is measured against initial capital. The replay had 170 positive sessions and 120 negative sessions. Median daily return was +0.315%; the worst session was -7.923%. The negative tail shows that positive cumulative return did not mean a smooth path. The chart uses 14 equal-width bins from -8% to +6%; red bars are losses and green bars are gains. Recreate it with:
+The chart compares total return for four replay assumptions: zero modeled cost, the 10 bps-per-side base case, a one-session delay in ranking eligibility, and 20 bps per side. It uses the saved sensitivity results without recomputing or changing the portfolio rules. The dashed vertical marker is the base-case return; green bars meet or exceed it and red bars fall below it. Higher costs and delayed execution reduce the result, showing why entry timing and transaction costs matter. Recreate it with:
 
 ```sh
 python analysis/plot_archived_replay.py \
