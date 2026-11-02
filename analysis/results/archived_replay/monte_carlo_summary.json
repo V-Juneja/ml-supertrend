@@ -1,0 +1,17 @@
+{
+  "input": "archived ML Supertrend daily BUY-email replay",
+  "source_sha256": "40480167e6455c5a182553cc027533109d91691670017dc933a8349832d8536b",
+  "start": "2025-09-08",
+  "end": "2026-10-30",
+  "daily_observations": 290,
+  "horizon_sessions": 252,
+  "block_sessions": 5,
+  "paths": 50000,
+  "seed": 20261102,
+  "median_terminal_return_pct": 43.976274398738354,
+  "p05_terminal_return_pct": -11.845305053869923,
+  "p95_terminal_return_pct": 131.43317437691996,
+  "negative_terminal_return_probability_pct": 10.874,
+  "mean_return_bottom_5_pct": -21.929315522464154,
+  "p95_maximum_drawdown_loss_pct": 35.46394562250427
+}

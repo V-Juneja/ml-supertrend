@@ -1,0 +1,21 @@
+# ML Supertrend archived replay Monte Carlo
+
+This risk simulation uses the daily equity series from the archived ML Supertrend BUY-email replay in [analysis/results/archived_replay](../analysis/results/archived_replay/).
+
+## Method
+
+- Replay window: 8 September 2025–30 October 2026; 290 daily marks. Archived BUY emails run through 14 October; the last saved list carries through the remaining sessions.
+- Starting capital: $100,000. The replay applies saved email rankings at the next available session open, with archived sizing and exit rules. The base case charges 5 bps in fees and 5 bps in slippage per side.
+- Resampling: circular blocks of five consecutive daily returns, sampled with replacement.
+- Paths: 50,000, each 252 sessions long.
+- Seed: `20261102`.
+
+Maximum drawdown is the largest decline from a running peak within each path. “Mean return in worst 5%” is the average terminal return among paths at or below the fifth percentile. Results and inputs are in `analysis/results/archived_replay/monte_carlo_summary.json` and `10bps_daily.csv`.
+
+Rebuild the summary and figure:
+
+```sh
+python analysis/monte_carlo_archived_replay.py
+```
+
+The underlying replay can be reproduced with [`analysis/replay_archived_signals.py`](../analysis/replay_archived_signals.py). Its audit checks the saved fills and daily marks against the archived replay ledger.

@@ -28,7 +28,7 @@ fig, (ax, ddax) = plt.subplots(2, 1, figsize=(8.2, 3.35), sharex=True,
 green = "#24824c"
 red = "#bd4545"
 ax.plot(d.date, d.total_value / 1000, color=green, lw=1.5,
-       label="Archived BUY-ranking replay")
+       label="ML Supertrend BUY-email replay")
 ax.plot(b.date, b.value / 1000, color=red, lw=1.2, ls="--",
        label="QQQ benchmark")
 for frame, col, color, style in [(d, "total_value", green, "-"),
@@ -37,7 +37,7 @@ for frame, col, color, style in [(d, "total_value", green, "-"),
     drawdown = (value / np.maximum.accumulate(value) - 1) * 100
     dates = frame.date
     ddax.plot(dates, drawdown, color=color, lw=.9, ls=style)
-ax.set_title("Archived signal-ranking replay and QQQ", loc="left", fontsize=10)
+ax.set_title("ML Supertrend archived replay and QQQ", loc="left", fontsize=10)
 ax.set_ylabel("Equity ($000s)")
 ax.legend(frameon=False, loc="upper left", ncol=2, fontsize=7)
 ax.grid(axis="y", color=".88", lw=.55)
