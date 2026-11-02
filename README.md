@@ -69,11 +69,17 @@ CSV columns: `time,open,high,low,close,volume`. One symbol and timeframe per fil
 
 The Python engine resets at the start of every `run()`. Its exported snapshot is partial and cannot resume a full live history. Pine/Python signal parity has not been established. The Pine snapshot includes a basic strategy order wrapper; it does not implement the declaration's complete position sizing, stops, sector caps or account drawdown controls. Its default tick-pressure setting is ON: turn it OFF for the declared baseline. Historical/realtime behaviour and broker fills require separate validation.
 
+## DELL paper-trading chart
+
+![DELL 30-minute TradingView chart](docs/images/dell_tradingview.png)
+
+Team TradingView screenshot of the DELL 30-minute paper-trading session, July-November 2026. BUY, SELL and close-order labels show plotted signal timing against price. The strategy declaration reports the separate archived portfolio replay. [Open the Strategy Declaration](reports/Strategy_Declaration.pdf).
+
 ## Real-market chart
 
 ![DELL adaptive bands and learned settings](docs/images/adaptive_bands.png)
 
-Yahoo Finance DELL regular-session 30-minute bars, 18-25 September 2026, from an existing provider cache; full initialization starts 2 July 2026. Python research replay, not a TradingView screenshot or a new performance backtest. Input checksum and timestamps are recorded in `docs/images/chart_provenance.json`. The chart shows bands and parameter state; it does not claim the learned settings beat fixed settings.
+The following code-generated chart uses Yahoo Finance DELL regular-session 30-minute bars, 18-25 September 2026, from an existing provider cache; full initialization starts 2 July 2026. It is a Python indicator replay. Input checksum and timestamps are recorded in `docs/images/chart_provenance.json`. The chart shows bands and parameter state; it does not claim the learned settings beat fixed settings.
 
 To plot your own provider-sourced bars:
 
