@@ -55,7 +55,7 @@ This is an adaptive system built from explicit update rules and contextual memor
 | `docs/TRADINGVIEW.md` | Add, hide or show the bands-only Pine overlay |
 | `analysis/run_risk.py` | Assumption-based Monte Carlo on declared exposures |
 | `analysis/calibrated_risk.py` | Shrinkage covariance, Student-t, block bootstrap and crisis tests on real input bars |
-| `analysis/plot_deterministic_declared_shocks.py` | Rebuild the 75% exposure downside chart from deterministic shock results |
+| `analysis/plot_monte_carlo_es.py` | Plot Monte Carlo expected shortfall by stress model at 75% exposure |
 | `analysis/check_model.py` | Parameter sensitivity and chronological-prefix checks on real input bars |
 | `docs/RISK_TESTS.md` | Risk assumptions, formulas and completed results |
 
@@ -90,11 +90,9 @@ The preferred chart file is `tradingview/ml_supertrend_bands_only.pine`. It was 
 
 ![Calibrated risk models](docs/images/calibrated_dashboard.png)
 
+![Monte Carlo expected shortfall at 75% exposure](docs/images/monte_carlo_es75.png)
+
 Fifty thousand 15-session paths per model, calibrated to 59 joint daily returns from a provider-sourced, cross-sector historical sample, 2 July-25 September 2026. This is an illustrative risk basket, not actual holdings or the five-position strategy portfolio. The comparison uses covariance shrinkage, heavy-tailed log shocks, five-session joint block resampling, a correlation/volatility crisis and a common price gap. Results are conditional risk experiments, not strategy-return forecasts. See `docs/RISK_TESTS.md`.
-
-![Deterministic stock-book shocks at the 75% exposure cap](docs/images/deterministic_75pct_shock.png)
-
-Deterministic common price declines translated into account losses at the declared maximum stock exposure. The 6% line is the halt trigger; a gap can exceed it. No stop fills, costs or recovery are assumed.
 
 ## Archived BUY-list backtest
 
