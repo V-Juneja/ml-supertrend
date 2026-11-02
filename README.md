@@ -48,7 +48,7 @@ This is an adaptive system built from explicit update rules and contextual memor
 | `docs/VALIDATION.md` | Evidence scope and remaining checks |
 | `docs/BACKTEST.md` | Archived BUY-list replay, costs, timing and reproduction |
 | `analysis/replay_archived_signals.py` | Offline saved-ranking portfolio replay |
-| `analysis/plot_archived_replay.py` | Rebuild the archived replay equity, drawdown and monthly-return charts |
+| `analysis/plot_archived_replay.py` | Rebuild the archived replay equity, drawdown, monthly-return and trade-return charts |
 | `analysis/results/archived_replay/` | Dated rankings, simulated outputs and sensitivity tests |
 | `docs/EXECUTION.md` | Bar timing, state, fills and risk overlay |
 | `docs/ATTRIBUTION.md` | Code origin and external references |
@@ -101,6 +101,7 @@ The preferred chart file is `tradingview/ml_supertrend_bands_only.pine`. It was 
 
 ![Archived replay equity and drawdown](docs/images/archived_replay_equity.png)
 ![Monthly net returns](docs/images/archived_replay_monthly.png)
+![Net closed-trade return distribution](docs/images/trade_return_cdf.png)
 
 ![ML Supertrend one-year Monte Carlo](docs/images/ml_supertrend_monte_carlo.png)
 

@@ -72,3 +72,25 @@ for i in range(values.shape[0]):
                 color="white" if abs(v) > 11 else ".1")
 fig.savefig(a.output / "archived_replay_monthly.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
+
+# Net trade-return distribution from the same archived replay ledger.
+trades = pd.read_csv(a.results / "closed_trade_expectancy.csv")
+r = np.sort(trades.net_return_pct.to_numpy(float))
+share = np.arange(1, len(r) + 1) / len(r) * 100
+median = float(np.median(r))
+fig, ax = plt.subplots(figsize=(8.2, 1.42), layout="constrained")
+negative = r <= 0
+positive = r >= 0
+ax.step(r[negative], share[negative], where="post", color=red, lw=1.5, label="Net losses")
+ax.step(r[positive], share[positive], where="post", color=green, lw=1.5, label="Net gains")
+ax.axvline(0, color=".35", lw=.75, ls=":")
+ax.axvline(median, color=".35", lw=.8, ls="--", label=f"Median {median:.2f}%")
+ax.set_title("Cumulative distribution of completed-trade returns", loc="left", fontsize=9)
+ax.set_xlabel("Net return per trade (%)", fontsize=7.2)
+ax.set_ylabel("Trades at or below (%)", fontsize=7.2)
+ax.set_xlim(r.min(), r.max())
+ax.set_ylim(0, 100)
+ax.grid(axis="y", color=".88", lw=.5)
+ax.legend(frameon=False, loc="upper left", ncol=3, fontsize=6.4)
+fig.savefig(a.output / "trade_return_cdf.png", dpi=300, bbox_inches="tight")
+plt.close(fig)
