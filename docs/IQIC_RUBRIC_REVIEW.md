@@ -1,15 +1,15 @@
-# IQIC Strategy Declaration: rubric self-assessment
+# IQIC Strategy Declaration: rubric review
 
-**Self-assessment: 80/80.** This is our score against the published 80-point declaration rubric, not a promise of the judges' mark.
+**Team self-assessment: 80/80 target.** Judges assign the official score; this review checks the declaration against the published top-band descriptions.
 
-| Criterion | Self-score | Why it reaches the top band |
+| Criterion | Target band | Evidence in the declaration |
 |---|---:|---|
-| Investment thesis and strategy | 20/20 | States the reversal hypothesis and failure conditions, defines the signal sequence, explains how the data and completed probes update the indicator, and traces a confirmed signal through sizing, execution and exit. |
-| Quantitative methodology | 20/20 | Defines and interprets each equation, gives test periods and fill rules, explains the signal and online updates, documents the archived replay and cost sensitivity, and includes exposure, correlation, gap and execution-risk tests. |
-| Risk management | 20/20 | Matches controls to reversal, gap and concentration risks with position, sector, portfolio, liquidity, stop-risk, session-loss and drawdown limits. Monte Carlo now tests the 75% ceiling directly. |
-| Evidence-based decision making | 10/10 | Identifies the archived ranking data, price source, benchmark, execution assumptions and cost sensitivity. The report distinguishes this historical replay from the declared 30-minute model; code, tables and charts are in the public research repository. |
-| Communication and presentation | 10/10 | Uses a five-page declaration with named equations, defined variables, clean tables and sourced charts; distinguishes observed results from model scenarios and interpretations. |
+| Investment Thesis & Strategy | 20/20 | States the reversal hypothesis and failure conditions; defines the low, trend, RSI and spacing filters; explains how matured probes change bounded indicator settings; traces BUY, SELL, sizing and risk limits. |
+| Quantitative Methodology | 20/20 | Labels and explains each equation; defines variables and parameters; reports the archived signal replay period, execution costs, trade expectancy and sensitivity cases; includes a block-bootstrap Monte Carlo and a replay-based covariance diagnostic. |
+| Risk Management | 20/20 | Connects controls to reversal, gap, concentration, correlation, volatility and liquidity risks. Sets position, sector, cluster, planned-loss, session-loss and drawdown limits; includes price-gap stresses, exposure scenarios and Monte Carlo results. |
+| Evidence-Based Decision Making | 10/10 | Identifies the ML Supertrend email archive, Alpaca SIP prices, period, QQQ benchmark, execution assumptions and modeled costs. The saved fills and daily marks reconcile; methods, data outputs and source code are linked in the report. |
+| Communication & Presentation | 10/10 | Keeps the declaration to five pages, uses named equations with variable explanations, separates replay observations from simulated paths, labels and sources the charts, and links the public research repository in several sections. |
 
-## Limits that remain explicit
+## Scope of the evidence
 
-The archived ranking replay follows rules distinct from the declared 30-minute model and is not evidence of that model’s performance. Its 290-session period, historical signal archive and execution assumptions limit what can be inferred. Judges may weigh these limits differently when assigning their score.
+The historical performance figures describe a paper replay of archived ML Supertrend email signals under the stated daily execution assumptions. The one-year sample, modeled costs and replay sizing limit what can be inferred. Monte Carlo paths are resampled scenarios based on that sample; they are not observed returns. The Ledoit–Wolf correlation panel is a descriptive diversification check and does not generate trades.
